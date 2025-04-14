@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decode Global - Trading Platform</title>
+    <link rel="icon" type="image/png" href="favicon.png"/>
+    <style>
+        :root {
+            --primary-color: #000000;
+            --secondary-color: #333333;
+            --accent-color: #5D5FEF;
+            --background-color: #FFFFFF;
+            --text-color: #333333;
+            --light-gray: #F5F5F5;
+            --border-color: #E0E0E0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            line-height: 1.6;
+        }
+
+        /* Dark Mode */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --primary-color: #FFFFFF;
+                --secondary-color: #F0F0F0;
+                --accent-color: #7B7DFF;
+                --background-color: #121212;
+                --text-color: #F0F0F0;
+                --light-gray: #1E1E1E;
+                --border-color: #333333;
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--light-gray);
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(to right, var(--light-gray), var(--background-color));
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: var(--secondary-color);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .cta-button {
+            padding: 15px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+
+        .cta-button.secondary {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .cta-button:hover {
+            background-color: var(--accent-color);
+        }
+
+        .cta-button.secondary:hover {
+            background-color: var(--light-gray);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 60px;
+            color: var(--primary-color);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background-color: var(--light-gray);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .feature-card p {
+            color: var(--secondary-color);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+
+        /* Markets Section */
+        .markets {
+            background-color: var(--light-gray);
+            padding: 80px 0;
+        }
+
+        .markets-list {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .market-category {
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .market-category h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .market-category ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .market-category li {
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 50px 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #CCC;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: white;
+        }
+
+        .copyright {
+            margin-top: 40px;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">Decode Global</div>
+            <nav class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#markets">Markets</a>
+                <a href="#download">Download</a>
+                <a href="/index.html">Web App</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Trade Global Markets</h1>
+            <p>Access futures, forex and cryptocurrency markets all in one platform. Trade anytime, anywhere with Decode Global.</p>
+            <div class="cta-buttons">
+                <a href="#download" class="cta-button">Download App</a>
+                <a href="/index.html" class="cta-button secondary">Try Web Version</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Real-time Data</h3>
+                    <p>Get access to real-time market data and charts to make informed trading decisions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Multi-platform</h3>
+                    <p>Available on iOS, Android and Web. Your account syncs across all devices.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Secure Trading</h3>
+                    <p>Advanced security measures to protect your account and transactions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Mobile-first</h3>
+                    <p>Optimized mobile experience for trading on the go with full functionality.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📰</div>
+                    <h3>Market News</h3>
+                    <p>Stay updated with the latest market news and analysis.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Advanced Analysis</h3>
+                    <p>Technical analysis tools and indicators for in-depth market analysis.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="markets" class="markets">
+        <div class="container">
+            <h2 class="section-title">Markets We Offer</h2>
+            <div class="markets-list">
+                <div class="market-category">
+                    <h3>Futures</h3>
+                    <ul>
+                        <li>Gold</li>
+                        <li>Silver</li>
+                        <li>Crude Oil</li>
+                        <li>Natural Gas</li>
+                        <li>And more...</li>
+                    </ul>
+                </div>
+                <div class="market-category">
+                    <h3>Forex</h3>
+                    <ul>
+                        <li>EUR/USD</li>
+                        <li>USD/JPY</li>
+                        <li>GBP/USD</li>
+                        <li>AUD/USD</li>
+                        <li>And more...</li>
+                    </ul>
+                </div>
+                <div class="market-category">
+                    <h3>Crypto</h3>
+                    <ul>
+                        <li>BTC/USDT</li>
+                        <li>ETH/USDT</li>
+                        <li>BNB/USDT</li>
+                        <li>XRP/USDT</li>
+                        <li>And more...</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="download" class="features">
+        <div class="container" style="text-align: center;">
+            <h2 class="section-title">Download Decode Global</h2>
+            <p style="max-width: 700px; margin: 0 auto 40px;">Start trading on your preferred device. Download our app now!</p>
+            <div class="cta-buttons">
+                <a href="#" class="cta-button">Download for iOS</a>
+                <a href="#" class="cta-button">Download for Android</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Decode Global</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Products</h3>
+                    <ul>
+                        <li><a href="#">Trading Platform</a></li>
+                        <li><a href="#">Mobile App</a></li>
+                        <li><a href="#">API Access</a></li>
+                        <li><a href="#">Institutional</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Community</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Market News</a></li>
+                        <li><a href="#">Learning Center</a></li>
+                        <li><a href="#">Market Analysis</a></li>
+                        <li><a href="#">Economic Calendar</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Decode Global. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple dark mode toggle based on system preference
+        const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+        
+        if (prefersDarkScheme.matches) {
+            document.body.classList.add("dark-mode");
+        } else {
+            document.body.classList.remove("dark-mode");
+        }
+        
+        // Listen for changes in dark mode preference
+        prefersDarkScheme.addEventListener("change", (e) => {
+            if (e.matches) {
+                document.body.classList.add("dark-mode");
+            } else {
+                document.body.classList.remove("dark-mode");
+            }
+        });
+    </script>
+</body>
+</html> 

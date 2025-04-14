@@ -1,5 +1,6 @@
 global项目使用框架
 使用语言flutter  适配端 iOS /Android/H5
+
 dio 网络请求
 intl 多语言工具
 provider 状态管理
@@ -9,6 +10,24 @@ internet_connection_checker_plus 网络状态监听
 shared_preferences 本地存储
 flutter_native_splash 启动图
 cached_network_image 图片缓存
+
+
+在项目中默认使用导入的库
+
+比如：
+
+网络请求要使用
+dio 网络请求
+
+状态更新要使用更新页面
+provider
+
+网络图片要使用加载缓存
+cached_network_image
+
+
+
+
 要求：
 1、使用的功能在现有的第三方进行实现、没有在进行添加
 2、项目使用的按钮必须统一封装使用防止0.7S 内多次点击
@@ -25,6 +44,7 @@ https://www.global-rlspo.top/api/addons/tf-futures/symbol/cate-list?access-token
 长连接：wss://deglobalrlspo.top/ws
 
 Position 页面
+都使用GET请求
 调用的接口：
 1、我的持仓
 https://www.global-rlspo.top/api/addons/tf-futures/order/list?state=hold&access-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6MSwiS2V5IjoiIn0.lkkgLI7UPS-BcMpvhS3RGLvJKVNlKt2v52joEO8vY4E&_=1744190432000
@@ -61,3 +81,11 @@ K线数据：https://www.global-rlspo.top/api/kline/history?access-token=eyJhbGc
       // 发送请求
       final streamedResponse = await request.send();
       final response = await http.Response.fromStream(streamedResponse);
+
+
+
+      创建项目后对home要求补充
+
+      home.mp文件有之前接入接口数据和逻辑判断，国际化主要事项，在现有的框架重构
+
+      补充Decode Global.html
